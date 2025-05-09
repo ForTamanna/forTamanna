@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(145deg, #2d1f2f, #3e2d40);
+      color: #ffdfe8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    header {
+      padding: 2rem 1rem;
+      width: 100%;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #ffc1d3;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .photo-frame-wrapper {
+      position: relative;
+      width: 90%;
+      max-width: 350px;
+      margin-top: 2rem;
+      z-index: 1;
+    }
+
+    .slider-container {
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      will-change: transform;
+    }
+
+    .slider img {
+      min-width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .buttons img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.2s;
+    }
+
+    .buttons img:hover {
+      transform: scale(1.1);
+    }
+
+    .message {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 1rem;
+      max-width: 600px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ffe6f1;
+    }
+
+    .spotify-button {
+      margin: 1rem;
+    }
+
+    .spotify-button a {
+      background: #1db954;
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.6rem;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      display: inline-block;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .spotify-button a:hover {
+      background: #1aa34a;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      color: #aa90a6;
+      margin: 2rem 0 1rem;
+    }
+
+    /* Heart Styling */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(-45deg);
+      opacity: 0.7;
+      animation: float-up 2s infinite, float-down 4s infinite, float-left 4s infinite, float-right 4s infinite;
+
+
+    }
+
+    
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+
+    /* Float animations */
+    @keyframes float-up {
+      0% {
+        transform: translateY(0) rotate(-45deg) scale(1);
+        opacity: 0.9;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
+
+      80% {
+        opacity: 0.1;
+      }
+
+      100% {
+        transform: translateY(-150px) rotate(-45deg) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    /*
+    @keyframes float-down {
+      0% {
+        transform: translateY(0) rotate(-45deg) scale(1);
+        opacity: 0.9;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      80% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(150px) rotate(-45deg) scale(1.3);
+        opacity: 0;
+      }
+    }
+*/
+    /*
+    @keyframes float-left {
+      0% {
+        transform: translateX(0) rotate(-45deg) scale(1);
+        opacity: 0.9;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      80% {
+        opacity: 0.1;
+      }
+      100% {
+        transform: translateX(-80px) rotate(-45deg) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    @keyframes float-right {
+      0% {
+        transform: translateX(0) rotate(-45deg) scale(1);
+        opacity: 0.9;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      80% {
+        opacity: 0.1;
+      }
+      100% {
+        transform: translateX(80px) rotate(-45deg) scale(0.3);
+        opacity: 0;
+      }
+    }
+*/
+    /* Media */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .buttons img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Hey, Tiny Head
+    This one's for you</h1>
+  </header>
+
+  <div class="photo-frame-wrapper">
+    <!-- Floating Hearts -->
+    <div class="heart" style="top: 20%; left: 10%; animation: float-up 3s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 15%; animation: float-up 2.5s infinite;"></div>
+    <div class="heart" style="top: 20%; left: 20%; animation: float-up 3s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 30%; animation: float-up 2.8s infinite;"></div>
+    <div class="heart" style="top: 20%; left: 40%; animation: float-up 2.6s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 50%; animation: float-up 2.4s infinite;"></div>
+    <div class="heart" style="top: 20%; left: 70%; animation: float-up 2.7s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 80%; animation: float-up 2.9s infinite;"></div>
+    <div class="heart" style="top: 20%; left: 90%; animation: float-up 2.2s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 60%; animation: float-up 2.1s infinite;"></div>
+
+    <div class="heart" style="top: 50%; left: 40%; animation: float-up 2.3s infinite;"></div>
+
+
+
+
+    <div class="heart" style="top: 20%; left: 13%; animation: float-up 2.5s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 17%; animation: float-up 2s infinite;"></div>
+    <div class="heart" style="top: 20%; left: 23%; animation: float-up 3.2s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 33%; animation: float-up 2.1s infinite;"></div>
+    <div class="heart" style="top: 20%; left: 45%; animation: float-up 2s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 55%; animation: float-up 2.9s infinite;"></div>
+    <div class="heart" style="top: 20%; left: 76%; animation: float-up 3.5s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 84%; animation: float-up 2.1s infinite;"></div>
+    <div class="heart" style="top: 20%; left: 81%; animation: float-up 2.9s infinite;"></div>
+    <div class="heart" style="top: 10%; left: 66%; animation: float-up 2.9s infinite;"></div>
+
+    <div class="heart" style="top: 50%; left: 43%; animation: float-up 3s infinite;"></div>
+
+
+
+    <!-- Additional hearts can be added in similar fashion -->
+
+    <!-- Slider -->
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <img src="https://iili.io/3eEVYJa.md.png" alt="Photo 1">
+        <img src="https://iili.io/3eEVR0F.png" alt="Photo 2">
+        <img src="https://iili.io/3eEV5Ug.md.png" alt="Photo 3">
+
+        <img src="https://iili.io/3eVJPh7.md.png" alt="Photo 4">
+        <img src="https://iili.io/3eVJ6IS.md.png" alt="Photo 5">
+        <img src="https://iili.io/3eVJU74.md.jpg" alt="Photo 6">
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <img src="https://iili.io/3eVlHBt.png" alt="Prev" onclick="prevSlide()">
+    <img src="https://iili.io/3eVlJEX.md.png" alt="Next" onclick="nextSlide()">
+  </div>
+  <p>Back Next</p>
+
+  <section class="message">
+    <p>
+      Meow Meow Miss Tamanna, 
+      There are some things I have been wanting to tell you for a while now and I think I have gathered the courage to tell you.
+      <br>
+      <br>
+      See, I know we have not known each other for a long time, butttttt the last month has been really Special for Me. And this is not just because I have been grateful to have such a Great Friend like You but also to meet someone who is wise and mature beyond her years.
+      <br><br>
+      From discussing Women Empowerment to talking about Every Brainrot Thing on the Internet, this has been very special and Fun to Me.
+      <br><br>
+      The most precious part for me has been the inexpressible comfort of talking with you and telling you things about myself knowing you won't judge me.
+<br><br>
+      This friendship has been really exciting for me. I remember waking up Hardik in the middle of the night at 4 just to tell him that Tamanna texted me and explaining to him whole day how sweet and beautiful human you are.
+<br><br>
+      Apart from having the Cutest Smile and being the Most Beautiful Girl, you are a really Genuine Human Being, one of the Sweetest Souls I have ever met. I have had the privilege to learn a lot about you. Apart from being really Funny, Interesting, Forgiving, Caring and Kind Human Being, The Best Thing about you is that you really understand other People's Perspective which not much people in this Current world do. So yes, you are one in many(Kudos to your Amazing Parents and Their Parenting and ofcourse Daadi ki Daant).
+<br><br>
+      You really value people and friends in your life and also those Nutella Sandwiches and Dark Chocolate you crave everyday.
+<br><br>
+      Last but not the Least, I Really Like You and you really mean a lot to Me.
+<br><br>
+      A Special Spotify Playlist for you with your Beloved Songs and My Favourite Description below here.
+      <br><br>
+      <p style="  text-shadow: 0 0 10px #ffffff, 0 0 10px #242124, 0 0 20px #242124; ">
+      I've wanted to tell you that I like you(more than a friend) for a while... you're incredibly special to me, and I hope this little site makes you
+      smile.</p>
+    </p>
+  </section>
+
+  <div class="spotify-button">
+    <a href="https://open.spotify.com/playlist/6J5lWHbUYP9zj7CHzGKcnA?si=_M2ljTXmQ9K_pbQH2etNgQ&pt=e0d513379a56031957fe31c3486e5d75" target="_blank">Listen to Your Playlist</a>
+  </div>
+
+  <footer>
+    Made with love, thoughts, and a lot of cats.
+    <br>
+    ~vasu khunger
+  </footer>
+
+  <script>
+    let currentIndex = 0;
+    const slider = document.getElementById('slider');
+    const totalSlides = slider.children.length;
+
+    function updateSlide() {
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlide();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSlide();
+    }
+  </script>
+
+  <!-- Password Overlay for Tamanna -->
+  <!-- Password Overlay for Tamanna -->
+  <div id="password-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(to right,#ffc0cb,#ffe4e1);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;font-family:'Comic Sans MS',cursive;">
+    <img src="https://i.ibb.co/qFNF661F/cute-cat-with-love-sign-hand-cartoon-illustration-animal-nature-concept-isolated-flat-cartoon-style.png" alt="Cute Cat" width="50%" height="30%" style="margin-bottom:20px;">
+    <h2 style="color:#d63384;margin-bottom:10px;">Meow! Only special paws can enter.</h2>
+    <p style="color:#aa336a;margin-bottom:10px;">Enter the secret passpawrd</p>
+    <input type="password" id="password-input" placeholder="What's the magic word?" style="padding:10px;border:2px solid #d63384;border-radius:10px;margin-bottom:10px;width:250px;text-align:center;">
+    <button onclick="checkPassword()" style="padding:10px 20px;background:#d63384;color:white;border:none;border-radius:10px;cursor:pointer;">Let me in!</button>
+    <p id="error-message" style="color:#000000; margin-top:10px;"></p>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password-input").value;
+      const error = document.getElementById("error-message");
+      if (input === "30102008" || input==="tamanna") {
+        document.getElementById("password-overlay").style.display = "none";
+      } else {
+        error.textContent = "Wrong passpawrd, try again";
+      }
+    }
+  </script>
+
+  
+</body>
+
+</html>
